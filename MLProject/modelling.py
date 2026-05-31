@@ -6,8 +6,6 @@ import mlflow
 from sklearn.ensemble import RandomForestClassifier
 
 def train_model(data_dir):
-    mlflow.set_experiment('Hantavirus detection retraining')
-
     X_train = pd.read_csv(os.path.join(data_dir, 'X_train_scaled.csv'))
     X_test = pd.read_csv(os.path.join(data_dir, 'X_test_scaled.csv'))
     y_train = pd.read_csv(os.path.join(data_dir, 'y_train.csv')).values.ravel()
@@ -15,18 +13,17 @@ def train_model(data_dir):
 
     mlflow.sklearn.autolog()
 
-    with mlflow.start_run():
-        # menggunakan best parameter yang didapat dari eksperimen sebelumnya
-        model = RandomForestClassifier(
-            n_estimators=100,
-            max_depth=15,
-            min_samples_split=2,
-            min_samples_leaf=4,
-            random_state=42
+    # menggunakan best parameter yang didapat dari eksperimen sebelumnya
+    model = RandomForestClassifier(
+        n_estimators=100,
+        max_depth=15,
+        min_samples_split=2,
+        min_samples_leaf=4,
+        random_state=42
         )
-        model.fit(X_train, y_train)
+    model.fit(X_train, y_train)
         
-        y_pred = model.predict(X_test)
+    y_pred = model.predict(X_test)
         
 
 if __name__ == '__main__':
