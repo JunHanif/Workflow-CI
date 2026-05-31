@@ -37,7 +37,7 @@ jobs:
       - name: run model retraining via MLflow Project
         run: |
           cd MLProject
-          mlflow run . --entry-point main --no-conda
+          mlflow run . --entry-point main --env-manager local
 
       - name: Commit and Push Trained Model Artifacts
         if: github.event_name != 'pull_request'
