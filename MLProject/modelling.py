@@ -15,7 +15,7 @@ def train_model(data_dir):
 
     mlflow.sklearn.autolog()
 
-    with mlflow.start_run(run_name='RandomForest_retrain'):
+    with mlflow.start_run():
         # menggunakan best parameter yang didapat dari eksperimen sebelumnya
         model = RandomForestClassifier(
             n_estimators=100,
