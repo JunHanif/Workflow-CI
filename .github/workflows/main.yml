@@ -37,8 +37,8 @@ jobs:
       - name: run model retraining via MLflow Project
         run: |
           cd MLProject
-          mlflow run . --entry-point main --env-manager local
-
+          mlflow run . --entry-point main --experiment-name "Hantavirus detection retraining" --env-manager local
+          
       - name: Commit and Push Trained Model Artifacts
         if: github.event_name != 'pull_request'
         run: |
