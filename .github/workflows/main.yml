@@ -11,6 +11,7 @@ on:
     paths:
       - "MLProject/hantavirus_dataset_preprocessing/**"
       - "MLProject/modelling.py"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -39,7 +40,7 @@ jobs:
           mlflow run . --entry-point main --no-conda
 
       - name: Commit and Push Trained Model Artifacts
-        if: github.event_name == 'push'
+        if: github.event_name != 'pull_request'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action Bot"
@@ -54,14 +55,14 @@ jobs:
           fi
 
       - name: Log in to Docker Hub
-        if: github.event_name == 'push'
+        if: github.event_name != 'pull_request'
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Build and Push Docker Image via MLflow
-        if: github.event_name == 'push'
+        if: github.event_name != 'pull_request'
         run: |
           cd MLProject
 
@@ -70,5 +71,4 @@ jobs:
 
           mlflow models build-docker --model-uri "$MODEL_PATH" --name "${{ secrets.DOCKER_HUB_USERNAME }}/hantavirus-classifier-ci:latest"
 
-          # Melakukan Push image dari server runner ke Docker Hub Registry Anda
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/hantavirus-classifier-ci:latest
