@@ -1,0 +1,42 @@
+artifact_path: /home/runner/work/Workflow-CI/Workflow-CI/MLProject/mlruns/1/models/m-bf1ed999b25d473a816b0af7f12af018/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.7
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+is_signature_from_type_hint: false
+mlflow_version: 3.12.0
+model_id: m-bf1ed999b25d473a816b0af7f12af018
+model_size_bytes: 374644
+model_uuid: m-bf1ed999b25d473a816b0af7f12af018
+prompts: null
+run_id: 0825d59cf6064d22bc291b5b2bb44409
+signature:
+  inputs: '[{"type": "double", "name": "Age", "required": true}, {"type": "double",
+    "name": "Gender", "required": true}, {"type": "double", "name": "Region", "required":
+    true}, {"type": "double", "name": "Symptoms", "required": true}, {"type": "double",
+    "name": "Symptom_Count", "required": true}, {"type": "double", "name": "Exposure_Type",
+    "required": true}, {"type": "double", "name": "WBC_Count_K/uL", "required": true},
+    {"type": "double", "name": "Platelet_Count_K/uL", "required": true}, {"type":
+    "double", "name": "CRP_mg/L", "required": true}, {"type": "double", "name": "ALT_U/L",
+    "required": true}, {"type": "double", "name": "AST_U/L", "required": true}, {"type":
+    "double", "name": "BUN_mg/dL", "required": true}, {"type": "double", "name": "Creatinine_mg/dL",
+    "required": true}, {"type": "double", "name": "WBC_Platelet_Ratio", "required":
+    true}, {"type": "double", "name": "Creatinine_BUN_Ratio", "required": true}, {"type":
+    "double", "name": "Liver_Injury_Score", "required": true}, {"type": "double",
+    "name": "Immunological_Risk", "required": true}, {"type": "double", "name": "Renal_Risk",
+    "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2026-05-31 15:48:35.610175'
